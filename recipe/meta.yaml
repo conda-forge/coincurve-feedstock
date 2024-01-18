@@ -1,5 +1,5 @@
 {% set name = "coincurve" %}
-{% set version = "18.0.0" %}
+{% set version = "19.0.0" %}
 
 package:
   name: {{ name }}
@@ -7,11 +7,11 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: c86626afe417a09d8e80e56780efcae3ae516203b23b5ade84813916e1c94fc1
+  sha256: 3e5031ae38d0b2bc842e48c39e5a45304b28406c67da050797fda5cd50a8a79f
 
 build:
-  number: 1
-  script:  {{ PYTHON }} -m pip install . --use-pep517 -vvv
+  number: 0
+  script: {{ PYTHON }} -m pip install . --use-pep517 -vvv
 
 requirements:
   build:
