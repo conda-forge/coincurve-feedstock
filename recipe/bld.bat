@@ -4,5 +4,5 @@ if errorlevel 1 exit 1
 rm -r coincurve.egg-info/SOURCES.txt
 rm -r libsecp256k1
 
-%PYTHON% -m pip install . --no-deps --ignore-installed -vv
+%PYTHON% -m pip install . --ues-pep517 --no-deps --ignore-installed -vv
 exit 0
