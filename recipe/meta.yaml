@@ -12,7 +12,7 @@ source:
 build:
   number: 0
   script:  {{ PYTHON }} -m pip install . -vvv --no-deps --no-build-isolation
-  skip: True  # [not osx or not py==38]
+  skip: True  # [not win or not py==38]
 
 requirements:
   build:
