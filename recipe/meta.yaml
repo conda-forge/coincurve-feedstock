@@ -16,7 +16,7 @@ build:
 requirements:
   build:
     - {{ compiler('c') }}
-autoco    - autoconf
+    - autoconf
   host:
     - cffi >=1.3.0
     - libsecp256k1
