@@ -1,13 +1,13 @@
 {% set name = "coincurve" %}
-{% set version = "1{% set version = "18.0.0" %}
+{% set version = "18.0.0" %}
 
 package:
   name: {{ name }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: c86626afe417a09d8e80e56780efcae3ae516203b23b5ade84813916e1c94fc1
+  url: https://github.com/ofek/coincurve/archive/refs/tags/v{{ version }}.tar.gz
+  sha256: 11ec706bb020be8ac268fd56ea9261b54135407ee345f953a497461d804d9db4
 
 build:
   number: 0
