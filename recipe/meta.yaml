@@ -10,12 +10,13 @@ source:
   sha256: 11ec706bb020be8ac268fd56ea9261b54135407ee345f953a497461d804d9db4
 
 build:
-  number: 1
-  script:  {{ PYTHON }} -m pip install . --use-pep517 -vvv
+  number: 0
+  script:  {{ PYTHON }} -m pip install . -vvv --no-deps --no-build-isolation
 
 requirements:
   build:
     - {{ compiler('c') }}
+autoco    - autoconf
   host:
     - cffi >=1.3.0
     - libsecp256k1
