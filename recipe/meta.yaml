@@ -16,7 +16,7 @@ build:
 
 requirements:
   build:
-    - {{ compiler('c') }}  # [not win]
+    - {{ compiler('c') }}
     - automake  # [not win]
     - libtool  # [not win]
     - make  # [not win]
