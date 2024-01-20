@@ -35,6 +35,7 @@ requirements:
     - m2-m4  # [win]
     - m2-gzip  # [win]
     - m2-make  # [win]
+    - m2-sed  # [win]
     - m2-tar  # [win]
   host:
     - cffi >=1.3.0
