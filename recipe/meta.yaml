@@ -29,7 +29,9 @@ requirements:
     #### Cross-compile for windows
     ###- autotools_clang_conda  # [win]
     # Try to fix the build on Windows
+    - m2-autoconf  # [win]
     - m2-automake-wrapper  # [win]
+    - m2-base  # [win]
     - m2-bash  # [win]
     - m2-libtool  # [win]
     - m2-m4  # [win]

@@ -6,6 +6,8 @@ set MSYS2_PATH_TYPE=inherit
 set CHERE_INVOKING=1
 set BUILD_PLATFORM=win_amd64
 
+makedirs \tmp
+
 bash -lc "./build_windows.sh"
 if %ERRORLEVEL% neq 0 exit /b %ERRORLEVEL%
 
