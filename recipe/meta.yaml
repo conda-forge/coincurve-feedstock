@@ -9,7 +9,9 @@ source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   sha256: c86626afe417a09d8e80e56780efcae3ae516203b23b5ade84813916e1c94fc1
   patches:
-    - fix-SOURCES.txt-abspath.patch
+    - fix-SOURCES.txt-abspath.patch  # [not win]
+    - fix-pyproject.toml.patch
+    - fix-setup.py-win-abspath.patch  # [win]
 
 build:
   number: 0
