@@ -33,6 +33,9 @@ requirements:
     - m2-bash  # [win]
     - m2-libtool  # [win]
     - m2-m4  # [win]
+    - m2-gzip  # [win]
+    - m2-make  # [win]
+    - m2-tar  # [win]
   host:
     - cffi >=1.3.0
     - requests
