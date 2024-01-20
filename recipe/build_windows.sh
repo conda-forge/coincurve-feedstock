@@ -15,7 +15,7 @@ build_dll() {
                 --enable-module-extrakeys \
                 --enable-module-schnorrsig \
                 --enable-static \
-                --enable-tests=no \
+                --enable-tests=yes \
                 --with-pic
     make
     make check
@@ -34,4 +34,6 @@ mv "secp256k1-$COINCURVE_UPSTREAM_REF" secp256k1
 cd secp256k1
   build_dll
   cp .libs/secp256k1-0.dll ../coincurve/libsecp256k1.dll
-  cp .libs/secp256k1-0.dll ../coincurve/libsecp256k1.dll
+cd ..
+
+rm -rf secp256k1 "$COINCURVE_UPSTREAM_REF.tar.gz"

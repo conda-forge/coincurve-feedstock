@@ -11,8 +11,10 @@ makedirs \tmp
 bash -lc "./build_windows.sh"
 if %ERRORLEVEL% neq 0 exit /b %ERRORLEVEL%
 
-rem %PYTHON% setup.py bdist_wheel --plat-name=win_amd64
-%PYTHON% -m pip install . --no-deps --ignore-installed -vv
+%PYTHON% setup.py bdist_wheel --plat-name=win_amd64
+if %ERRORLEVEL% neq 0 exit /b %ERRORLEVEL%
+
+%PYTHON% setup.py install
 if %ERRORLEVEL% neq 0 exit /b %ERRORLEVEL%
 
 rem CLANG try, fails with unknown -EXPORT
