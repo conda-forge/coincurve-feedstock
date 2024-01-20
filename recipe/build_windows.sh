@@ -31,4 +31,7 @@ curl -sLO "https://github.com/bitcoin-core/secp256k1/archive/$COINCURVE_UPSTREAM
 tar xzf "$COINCURVE_UPSTREAM_REF.tar.gz"
 mv "secp256k1-$COINCURVE_UPSTREAM_REF" secp256k1
 
-(cd secp256k1; build_dll; cp .libs/secp256k1-0.dll ../coincurve/libsecp256k1.dll)
+cd secp256k1
+  build_dll
+  cp .libs/secp256k1-0.dll ../coincurve/libsecp256k1.dll
+  cp .libs/secp256k1-0.dll ../coincurve/libsecp256k1.dll
