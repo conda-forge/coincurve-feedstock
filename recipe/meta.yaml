@@ -12,6 +12,7 @@ source:
     - fix-SOURCES.txt-abspath.patch  # [not win]
     - fix-pyproject.toml.patch
     - fix-setup.py-win-abspath.patch  # [win]
+    - fix-MANIFEST.in.patch
 
 build:
   number: 0
