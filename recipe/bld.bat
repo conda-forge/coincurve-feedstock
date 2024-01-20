@@ -12,4 +12,6 @@ rem     error: subprocess-exited-with-error
 rem   full command: 'D:\bld\coincurve_1705706780261\_h_env\python.exe' 'D:\bld\coincurve_1705706780261\_h_env\lib\site-packages\pip\_vendor\pyproject_hooks\_in_process\_in_process.py' build_wheel 'C:\Users\VSSADM~1\AppData\Local\Temp\tmprfx5pfc9'
 
 %PYTHON% setup.py install
+if errorlevel 1 exit 1
+
 exit 0
