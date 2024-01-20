@@ -18,15 +18,21 @@ build:
   number: 0
   skip: True  # [not win or not py==38]
   script_env:
-￼    - COINCURVE_UPSTREAM_REF=ddf2b2910eb19032f8dd657c66735115ae24bfba
-￼
+    - COINCURVE_UPSTREAM_REF=ddf2b2910eb19032f8dd657c66735115ae24bfba
+
 requirements:
   build:
     - {{ compiler('c') }}
     - automake  # [not win]
     - libtool  # [not win]
     - make  # [not win]
+    # Cross-compile for windows
     - autotools_clang_conda  # [win]
+    # - autotools_mingw_conda  # [win]
+    # - autotools_vc_conda  # [win]
+    # - autotools_win  # [win]
+    # Try to fix the build on Windows
+    - m2-automake  # [win]
   host:
     - cffi >=1.3.0
     - requests
