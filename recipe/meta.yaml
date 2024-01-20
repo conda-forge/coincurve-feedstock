@@ -28,11 +28,7 @@ requirements:
     - make  # [not win]
     # Cross-compile for windows
     - autotools_clang_conda  # [win]
-    # - autotools_mingw_conda  # [win]
-    # - autotools_vc_conda  # [win]
-    # - autotools_win  # [win]
     # Try to fix the build on Windows
-    - m2-automake  # [win]
   host:
     - cffi >=1.3.0
     - requests
