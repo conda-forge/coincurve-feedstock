@@ -14,7 +14,7 @@ source:
 
 build:
   number: 0
-  skip: True  # [not win or not py==38]
+  skip: True  # [not linux or not py==38]
   script_env:
     - COINCURVE_UPSTREAM_REF=ddf2b2910eb19032f8dd657c66735115ae24bfba
 
