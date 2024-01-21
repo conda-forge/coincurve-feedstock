@@ -50,6 +50,7 @@ test:
   requires:
     - pip
     - pytest
+    - pytest-benchmark
   commands:
     - pip check
     - pytest
