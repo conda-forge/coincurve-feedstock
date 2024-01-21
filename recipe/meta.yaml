@@ -49,8 +49,12 @@ test:
     - coincurve
   requires:
     - pip
+    - pytest
   commands:
     - pip check
+    - pytest
+  files:
+    - tests
 
 about:
   home: https://github.com/ofek/coincurve
