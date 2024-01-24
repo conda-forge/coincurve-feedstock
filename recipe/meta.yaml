@@ -18,7 +18,7 @@ source:
 build:
   number: 1
   script:  {{ PYTHON }} -m pip install . --use-pep517 -vvv
-  skip: true  # [not linux or py!=38]
+  skip: true  # [not osx or py!=38]
 
 requirements:
   build:
