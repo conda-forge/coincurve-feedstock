@@ -1,24 +1,32 @@
 {% set name = "coincurve" %}
-{% set version = "19.0.0" %}
+{% set version = "18.0.0" %}
 
 package:
   name: {{ name }}
   version: {{ version }}
 
 source:
-  url: https://github.com/ofek/coincurve/archive/refs/tags/v{{ version }}.tar.gz
+  # v18.0.0 is API compatible with v19.0.0, but the conda recipe requires
+  # the upgraded build process of v19.0.0.
+  # The key requirement is to link with v0.2.0 of libsecp256k1, which is
+  # the closest official release to the one used in v18.0.0
+  url: https://github.com/ofek/coincurve/archive/refs/tags/v19.0.0.tar.gz
   sha256: 11ec706bb020be8ac268fd56ea9261b54135407ee345f953a497461d804d9db4
+  patches:
+    - downgrade-v19.0.0-v18.0.0.patch
 
 build:
   number: 1
   script:  {{ PYTHON }} -m pip install . --use-pep517 -vvv
+  skip: true  # [not linux and not py==3.9]
 
 requirements:
   build:
     - {{ compiler('c') }}
   host:
     - cffi >=1.3.0
-    - libsecp256k1
+    # libsecp256k1 0.2.0 is the closest official release to the one used in v18.0.0
+    - libsecp256k1 =0.2.0
     - requests
     - pip
     - pkg-config
