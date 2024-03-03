@@ -61,10 +61,11 @@
      try:
          subprocess.check_output(['pkg-config', '--exists', 'libsecp256k1'])  # noqa S603
 
-@@ -80,12 +106,17 @@
+@@ -80,12 +106,18 @@
 
 
  _has_system_lib = None
++import logging
 +logging.info(f'   SYSTEM LIB:{_has_system_lib}')
 
 
