@@ -12,7 +12,7 @@ source:
 build:
   number: 0
   script: {{ PYTHON }} -m pip install . --use-pep517 -vvv
-  script_env: PKG_CONFIG_PATH=%CONDA_PREFIX%\lib\pkgconfig  # [win]
+  script_env: PKG_CONFIG_PATH=%BUILD_PREFIX%\lib\pkgconfig  # [win]
   skip: true  # [not win or py != 310]
 
 requirements:
