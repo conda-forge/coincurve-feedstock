@@ -1,5 +1,5 @@
 {% set name = "coincurve" %}
-{% set version = "19.0.0" %}
+{% set version = "19.0.1" %}
 
 package:
   name: {{ name }}
@@ -7,11 +7,11 @@ package:
 
 source:
   url: https://github.com/ofek/coincurve/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: 11ec706bb020be8ac268fd56ea9261b54135407ee345f953a497461d804d9db4
+  sha256: 848afd3707680dd820184c166e873e099b4ff65d413b8958f34d2020efc703e9
 
 build:
-  number: 1
-  script:  {{ PYTHON }} -m pip install . --use-pep517 -vvv
+  number: 0
+  script: {{ PYTHON }} -m pip install . --use-pep517 -vvv
   skip: true  # [not win or py != 310]
 
 requirements:
