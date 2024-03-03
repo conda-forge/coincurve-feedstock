@@ -17,7 +17,7 @@ build:
   script_env:
     - COINCURVE_IGNORE_SYSTEM_LIB='0'
     - COINCURVE_UPSTREAM_REF='__no_upstream__'
-    - PKG_CONFIG_PATH='{{ BUILD_DIR }}/lib/pkgconfig'
+    - PKG_CONFIG_PATH=${BUILD_DIR}/lib/pkgconfig;${BUILD_DIR}/Library/lib/pkgconfig;${PREFIX}/lib/pkgconfig;${PREFIX}/Library/lib/pkgconfig
   skip: true  # [not win or py != 310]
 
 requirements:
