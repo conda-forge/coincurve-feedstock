@@ -1,6 +1,6 @@
 --- setup_support.py    2024-03-01 23:10:59.000000000 -0600
 +++ setup_support.py    2024-03-03 10:28:59.492391934 -0600
-@@ -37,30 +37,55 @@
+@@ -37,30 +37,56 @@
      return op.realpath(op.abspath(op.join(op.dirname(__file__), *paths)))
 
 
@@ -48,9 +48,10 @@
 -    if 'COINCURVE_IGNORE_SYSTEM_LIB' in os.environ:
 +    import logging
 +
-+    logging.info(f'   - SYSTEM LIB:{_has_system_lib}')
-+    logging.info(f'   PKG_CONFIG_PATH: {os.getenv("COINCURVE_IGNORE_SYSTEM_LIB")}')
++    logging.info(f'   SYSTEM LIB:{_has_system_lib}')
++    logging.info(f'   COINCURVE_IGNORE_SYSTEM_LIB: {os.getenv("COINCURVE_IGNORE_SYSTEM_LIB")}')
 +    if os.getenv('COINCURVE_IGNORE_SYSTEM_LIB', '1') == '1':
++        logging.info(f'   COINCURVE_IGNORE_SYSTEM_LIB: {os.getenv("COINCURVE_IGNORE_SYSTEM_LIB")}')
          return False
 
      from cffi import FFI
@@ -60,7 +61,11 @@
      try:
          subprocess.check_output(['pkg-config', '--exists', 'libsecp256k1'])  # noqa S603
 
-@@ -83,9 +108,13 @@
+@@ -80,12 +106,17 @@
+
+
+ _has_system_lib = None
++logging.info(f'   SYSTEM LIB:{_has_system_lib}')
 
 
  def has_system_lib():
@@ -70,7 +75,7 @@
      if _has_system_lib is None:
          _has_system_lib = _find_lib()
 +    logging.info(f'   PKG_CONFIG_PATH: {os.getenv("COINCURVE_IGNORE_SYSTEM_LIB")}')
-+    logging.info(f'   - SYSTEM LIB:{_has_system_lib}')
++    logging.info(f'   SYSTEM LIB:{_has_system_lib}')
      return _has_system_lib
 
 
