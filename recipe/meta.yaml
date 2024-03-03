@@ -8,11 +8,12 @@ package:
 source:
   url: https://github.com/ofek/coincurve/archive/refs/tags/v{{ version }}.tar.gz
   sha256: 848afd3707680dd820184c166e873e099b4ff65d413b8958f34d2020efc703e9
+  patches:
+    - add-conda-PKG_CONFIG_PATH.patch
 
 build:
   number: 0
   script: {{ PYTHON }} -m pip install . --use-pep517 -vvv
-  script_env: PKG_CONFIG_PATH=%BUILD_PREFIX%\lib\pkgconfig  # [win]
   skip: true  # [not win or py != 310]
 
 requirements:
