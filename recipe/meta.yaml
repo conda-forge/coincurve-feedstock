@@ -12,7 +12,7 @@ source:
 build:
   number: 1
   script:  {{ PYTHON }} -m pip install . --use-pep517 -vvv
-  skip: true  # [not win or py != 3.10]
+  skip: true  # [not win or py != 310]
 
 requirements:
   build:
