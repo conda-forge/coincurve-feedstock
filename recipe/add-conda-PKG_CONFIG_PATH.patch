@@ -1,6 +1,6 @@
 --- setup_support.py    2024-03-01 23:10:59.000000000 -0600
 +++ setup_support.py    2024-03-03 10:28:59.492391934 -0600
-@@ -37,30 +37,53 @@
+@@ -37,30 +37,55 @@
      return op.realpath(op.abspath(op.join(op.dirname(__file__), *paths)))
 
 
@@ -46,6 +46,8 @@
 
  def _find_lib():
 -    if 'COINCURVE_IGNORE_SYSTEM_LIB' in os.environ:
++    import logging
++
 +    logging.info(f'   - SYSTEM LIB:{_has_system_lib}')
 +    logging.info(f'   PKG_CONFIG_PATH: {os.getenv("COINCURVE_IGNORE_SYSTEM_LIB")}')
 +    if os.getenv('COINCURVE_IGNORE_SYSTEM_LIB', '1') == '1':
@@ -58,7 +60,7 @@
      try:
          subprocess.check_output(['pkg-config', '--exists', 'libsecp256k1'])  # noqa S603
 
-@@ -83,9 +106,13 @@
+@@ -83,9 +108,13 @@
 
 
  def has_system_lib():
