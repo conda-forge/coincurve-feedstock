@@ -27,7 +27,7 @@
 
 +    # Update environment
 +    os.environ['PKG_CONFIG_PATH'] = str(os.pathsep).join(pkg_config_path)
-+    logging.info(f'   PKG_CONFIG_PATH: {os.getenv("PKG_CONFIG_PATH")}')
++    logging.warnings(f'   PKG_CONFIG_PATH: {os.getenv("PKG_CONFIG_PATH")}')
 +
 +
 +def build_flags(library, type_, path):
@@ -48,10 +48,10 @@
 -    if 'COINCURVE_IGNORE_SYSTEM_LIB' in os.environ:
 +    import logging
 +
-+    logging.info(f'   SYSTEM LIB:{_has_system_lib}')
-+    logging.info(f'   COINCURVE_IGNORE_SYSTEM_LIB: {os.getenv("COINCURVE_IGNORE_SYSTEM_LIB")}')
++    logging.warnings(f'   SYSTEM LIB:{_has_system_lib}')
++    logging.warnings(f'   COINCURVE_IGNORE_SYSTEM_LIB: {os.getenv("COINCURVE_IGNORE_SYSTEM_LIB")}')
 +    if os.getenv('COINCURVE_IGNORE_SYSTEM_LIB', '1') == '1':
-+        logging.info(f'   COINCURVE_IGNORE_SYSTEM_LIB: {os.getenv("COINCURVE_IGNORE_SYSTEM_LIB")}')
++        logging.warnings(f'   COINCURVE_IGNORE_SYSTEM_LIB: {os.getenv("COINCURVE_IGNORE_SYSTEM_LIB")}')
          return False
 
      from cffi import FFI
@@ -66,7 +66,7 @@
 
  _has_system_lib = None
 +import logging
-+logging.info(f'   SYSTEM LIB:{_has_system_lib}')
++logging.warnings(f'   SYSTEM LIB:{_has_system_lib}')
 
 
  def has_system_lib():
@@ -75,8 +75,8 @@
      global _has_system_lib
      if _has_system_lib is None:
          _has_system_lib = _find_lib()
-+    logging.info(f'   PKG_CONFIG_PATH: {os.getenv("COINCURVE_IGNORE_SYSTEM_LIB")}')
-+    logging.info(f'   SYSTEM LIB:{_has_system_lib}')
++    logging.warnings(f'   COINCURVE_IGNORE_SYSTEM_LIB: {os.getenv("COINCURVE_IGNORE_SYSTEM_LIB")}')
++    logging.warnings(f'   SYSTEM LIB:{_has_system_lib}')
      return _has_system_lib
 
 
