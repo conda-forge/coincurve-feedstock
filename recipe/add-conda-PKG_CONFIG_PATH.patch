@@ -1,6 +1,6 @@
 --- setup_support.py    2024-03-01 23:10:59.000000000 -0600
 +++ setup_support.py    2024-03-03 10:28:59.492391934 -0600
-@@ -37,37 +37,66 @@
+@@ -37,37 +37,67 @@
      return op.realpath(op.abspath(op.join(op.dirname(__file__), *paths)))
 
 
@@ -11,7 +11,9 @@
 
      pkg_config_path = [path]
      if 'PKG_CONFIG_PATH' in os.environ:
-         pkg_config_path.append(os.environ['PKG_CONFIG_PATH'])
+-        pkg_config_path.append(os.environ['PKG_CONFIG_PATH'])
++        # Windows annoyance yet again
++        pkg_config_path.append(os.environ['PKG_CONFIG_PATH'].strip('"')
 +    if 'CONDA_PREFIX' in os.environ:
 +        pkg_config_path.extend(
 +            [p for p in (
@@ -74,7 +76,7 @@
 
      except (OSError, subprocess.CalledProcessError):
          if 'LIB_DIR' in os.environ:
-@@ -80,12 +109,18 @@
+@@ -80,12 +110,18 @@
 
 
  _has_system_lib = None
