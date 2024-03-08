@@ -13,8 +13,8 @@
      if 'PKG_CONFIG_PATH' in os.environ:
          pkg_config_path.append(os.environ['PKG_CONFIG_PATH'])
 +    if 'CONDA_PREFIX' in os.environ:
-+        pkg_config_path =
-+            [p for p in (
++        pkg_config_path = [
++            p for p in (
 +                os.path.join(os.environ['CONDA_PREFIX'], 'lib', 'pkgconfig'),
 +                os.path.join(os.environ['CONDA_PREFIX'], 'lib64', 'pkgconfig'),
 +                os.path.join(os.environ['CONDA_PREFIX'], 'Library', 'lib', 'pkgconfig'),
