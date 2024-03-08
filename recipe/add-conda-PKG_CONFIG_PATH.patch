@@ -13,7 +13,7 @@
      if 'PKG_CONFIG_PATH' in os.environ:
 -        pkg_config_path.append(os.environ['PKG_CONFIG_PATH'])
 +        # Windows annoyance yet again
-+        pkg_config_path.append(os.environ['PKG_CONFIG_PATH'].strip('"')
++        pkg_config_path.append(os.environ['PKG_CONFIG_PATH'].strip('"'))
 +    if 'CONDA_PREFIX' in os.environ:
 +        pkg_config_path.extend(
 +            [p for p in (
