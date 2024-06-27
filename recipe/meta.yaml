@@ -10,6 +10,7 @@ source:
   sha256: be07831e54e2b6194b5f6425b3aca3e35dd23f993f57b403b5e33afef9847f5b
   patches:
     - 0001-remove-pypkgconf-win.patch
+    - 0002-fix-dependency-win.patch
 
 build:
   number: 0

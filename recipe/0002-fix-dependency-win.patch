@@ -1,0 +1,7 @@
+--- cm_library_c_binding/CMakeLists.txt.orig 2024-06-27 15:32:12.619396727 -0500
++++ cm_library_c_binding/CMakeLists.txt     2024-06-27 15:33:29.757155052 -0500
+@@ -35,3 +35,4 @@
+ )
+
+ add_custom_target(cffi-c-binding ALL DEPENDS ${CFFI_C_CODE_DIR}/${CFFI_C_CODE})
++add_dependencies(cffi-c-binding headers-for-cffi)
