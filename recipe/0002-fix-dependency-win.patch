@@ -20,7 +20,7 @@
 @@ -1,5 +1,5 @@
  function (SetSystemLibIfExists)
 -    set(_paths "$ENV{PKG_CONFIG_PATH}" "$ENV{CONDA_PREFIX}/Library/lib/pkgconfig" "$ENV{CONDA_PREFIX}/lib/pkgconfig")
-+    set(_paths "$ENV{PKG_CONFIG_PATH};$ENV{CONDA_PREFIX}/Library/lib/pkgconfig;$ENV{CONDA_PREFIX}/lib/pkgconfig")
++    list(APPEND _paths "$ENV{PKG_CONFIG_PATH}" "$ENV{CONDA_PREFIX}/Library/lib/pkgconfig" "$ENV{CONDA_PREFIX}/lib/pkgconfig")
      cmake_path(CONVERT "${_paths}" TO_NATIVE_PATH_LIST _paths)
      set(ENV{PKG_CONFIG_PATH} ${_paths})
 
