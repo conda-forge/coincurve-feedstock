@@ -1,0 +1,5 @@
+--- pyproject.toml.orig	2021-03-09 15:00:00 UTC
++++ pyproject.toml
+     "scikit-build-core>=0.9.0",
+-    "pypkgconf; sys_platform == 'win32'",
+ ]
