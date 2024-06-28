@@ -7,7 +7,7 @@
 +add_dependencies(cffi-c-binding headers-for-cffi)
 --- cm_python_module/CMakeLists.txt.orig 2024-06-27 15:32:12.619396727 -0500
 +++ cm_python_module/CMakeLists.txt     2024-06-27 15:33:29.757155052 -0500
-@@ -23,9 +23,14 @@
+@@ -23,9 +23,16 @@
      # https://docs.python.org/3/c-api/stable.html#limited-c-api
      target_link_libraries(${CFFI_OUTPUT_LIBRARY} PRIVATE ${CFFI_INPUT_LIBRARY})
  elseif(VENDORED_AS_SYSTEM_LIB_FOUND)
@@ -20,6 +20,8 @@
 +    # /libpath is converted to \libpath and fails to be interpreted as a flag by the linker
 +    # This may be an issue with libsecp256k1.pc, i.e. wrong slash used that triggers the slash conversion
 +    target_link_libraries(${CFFI_OUTPUT_LIBRARY} PRIVATE ${VENDORED_AS_SYSTEM_LIB_LIBRARIES})
++    string(REPLACE "/libpath:" "" VENDORED_AS_SYSTEM_LIB_LIBRARY_DIRS ${VENDORED_AS_SYSTEM_LIB_LIBRARY_DIRS})
++    string(REPLACE "/LIBPATH:" "" VENDORED_AS_SYSTEM_LIB_LIBRARY_DIRS ${VENDORED_AS_SYSTEM_LIB_LIBRARY_DIRS})
 +    target_link_directories(${CFFI_OUTPUT_LIBRARY} PRIVATE ${VENDORED_AS_SYSTEM_LIB_LIBRARY_DIRS})
  else()
      message(FATAL_ERROR "Vendored library not found.")
