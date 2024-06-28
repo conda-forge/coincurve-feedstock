@@ -21,7 +21,7 @@ build:
 
 requirements:
   build:
-    - {{ compiler('c') }}
+    - {{ compiler("c") }}
     - {{ stdlib("c") }}
     - cmake >=3.15
     - make  # [linux]
