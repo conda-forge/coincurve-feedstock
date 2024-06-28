@@ -7,10 +7,13 @@
 +add_dependencies(cffi-c-binding headers-for-cffi)
 --- cm_python_module/CMakeLists.txt.orig 2024-06-27 15:32:12.619396727 -0500
 +++ cm_python_module/CMakeLists.txt     2024-06-27 15:33:29.757155052 -0500
-@@ -24,6 +24,7 @@
+@@ -24,6 +24,10 @@
      target_link_libraries(${CFFI_OUTPUT_LIBRARY} PRIVATE ${CFFI_INPUT_LIBRARY})
  elseif(VENDORED_AS_SYSTEM_LIB_FOUND)
      message(STATUS "Vendored system library found: ${VENDORED_AS_SYSTEM_LIB_LINK_LIBRARIES}")
++    message(STATUS "                               ${VENDORED_AS_SYSTEM_LIB_LDFLAGS}")
++    message(STATUS "                               ${VENDORED_AS_SYSTEM_LIB_LDFLAGS_OTHER}")
++    message(STATUS "                               ${VENDORED_AS_SYSTEM_LIB_LIBRARIES}")
 +    add_dependencies(${CFFI_OUTPUT_LIBRARY} cffi-c-binding)
      target_include_directories(${CFFI_OUTPUT_LIBRARY} PRIVATE ${VENDORED_AS_SYSTEM_LIB_INCLUDE_DIRS})
      target_link_libraries(${CFFI_OUTPUT_LIBRARY} PRIVATE ${VENDORED_AS_SYSTEM_LIB_LDFLAGS})
