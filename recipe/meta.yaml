@@ -13,7 +13,7 @@ source:
     - 0002-fix-dependency-win.patch
 
 build:
-  number: 0
+  number: 1
   skip: True  # [win and py == 39 and python_impl == 'pypy']
   script: {{ PYTHON }} -m pip install . --use-pep517 -vvv
   script_env:
