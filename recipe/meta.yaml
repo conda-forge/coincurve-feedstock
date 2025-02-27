@@ -44,7 +44,7 @@ requirements:
   run:
     - asn1crypto
     # - {{ pin_compatible("cffi") }}
-    # - python
+    - python
 
 test:
   imports:
