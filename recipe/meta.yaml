@@ -25,7 +25,6 @@ requirements:
   build:
     - {{ compiler("c") }}
     - {{ stdlib("c") }}
-    - autoconf
     - automake  # [linux or osx]
     - automake-wrapper  # [not (linux or osx)]
     - cffi >=1.3.0  # [build_platform != target_platform]
