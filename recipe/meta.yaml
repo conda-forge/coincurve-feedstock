@@ -13,12 +13,14 @@ source:
     - 0002-fix-dependency-win.patch
 
 build:
-  number: 2
+  number: 3
   skip: True  # [win and py == 39 and python_impl == 'pypy']
   script: {{ PYTHON }} -m pip install . --use-pep517 -vvv
   script_env:
     - COINCURVE_IGNORE_SYSTEM_LIB='OFF'
     - COINCURVE_UPSTREAM_REF='__no_upstream__'
+  ignore_run_exports:
+    - python
 
 requirements:
   build:
