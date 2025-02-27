@@ -43,7 +43,7 @@ requirements:
     - setuptools
   run:
     - asn1crypto
-    # - {{ pin_compatible("cffi") }}
+    - {{ pin_compatible("cffi") }}
     - python
 
 test:
