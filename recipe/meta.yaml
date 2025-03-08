@@ -9,8 +9,7 @@ source:
   url: https://github.com/ofek/coincurve/archive/refs/tags/v{{ version }}.tar.gz
   sha256: 3b762e26992705f8be979639ecdd6ce308d9dfa66e97c69df46712c856e9fea2
   patches:
-    - 0001-remove-pypkgconf-win.patch
-    - 0002-fix-dependency-win.patch
+    - fix-dependency-win.patch
 
 build:
   number: 0
