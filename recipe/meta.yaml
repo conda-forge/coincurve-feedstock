@@ -20,6 +20,8 @@ build:
   ignore_run_exports:
     - cffi
     - python
+    - ucrt  # [win]
+    - vc14_runtime  # [win]
   missing_dso_whitelist:
     - $RPATH/ld-linux-x86-64.so.2  # [linux and (aarch64 or ppc64le)]
 
