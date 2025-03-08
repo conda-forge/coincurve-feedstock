@@ -1,5 +1,5 @@
 {% set name = "coincurve" %}
-{% set version = "20.0.0" %}
+{% set version = "21.0.0" %}
 
 package:
   name: {{ name }}
@@ -7,20 +7,23 @@ package:
 
 source:
   url: https://github.com/ofek/coincurve/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: be07831e54e2b6194b5f6425b3aca3e35dd23f993f57b403b5e33afef9847f5b
-  patches:
-    - 0001-remove-pypkgconf-win.patch
-    - 0002-fix-dependency-win.patch
+  sha256: 7ca7d1f81bce70cb10aad609d44dae560341d389a5c96bf0f25cd6000fb9d8d1
 
 build:
-  number: 3
-  skip: True  # [win and py == 39 and python_impl == 'pypy']
+  number: 0
+  skip: true  # [win and py == 39 and python_impl == 'pypy']
   script: {{ PYTHON }} -m pip install . --use-pep517 -vvv
   script_env:
     - COINCURVE_IGNORE_SYSTEM_LIB='OFF'
     - COINCURVE_UPSTREAM_REF='__no_upstream__'
+    - COINCURVE_VENDOR_CFFI=0
   ignore_run_exports:
+    - cffi
     - python
+    - ucrt  # [win]
+    - vc14_runtime  # [win]
+  missing_dso_whitelist:
+    - $RPATH/ld-linux-x86-64.so.2  # [linux and (aarch64 or ppc64le)]
 
 requirements:
   build:
@@ -39,11 +42,11 @@ requirements:
     - pip
     - python
     - requests
-    - scikit-build-core
+    - scikit-build-core >=0.9.0
     - setuptools
   run:
-    - asn1crypto
-    - {{ pin_compatible("cffi") }}
+    - {{ pin_compatible('cffi') }}
+    - libffi
     - python
 
 test:
