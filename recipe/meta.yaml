@@ -38,10 +38,9 @@ requirements:
     - pip
     - python
     - requests
-    - scikit-build-core
+    - scikit-build-core >=0.9.0
     - setuptools
   run:
-    - asn1crypto
     - {{ pin_compatible("cffi") }}
     - python
 
