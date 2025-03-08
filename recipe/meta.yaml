@@ -8,8 +8,6 @@ package:
 source:
   url: https://github.com/ofek/coincurve/archive/refs/tags/v{{ version }}.tar.gz
   sha256: 7ca7d1f81bce70cb10aad609d44dae560341d389a5c96bf0f25cd6000fb9d8d1
-  patches:
-    - fix-dependency-win.patch
 
 build:
   number: 0
@@ -18,6 +16,7 @@ build:
   script_env:
     - COINCURVE_IGNORE_SYSTEM_LIB='OFF'
     - COINCURVE_UPSTREAM_REF='__no_upstream__'
+    - COINCURVE_VENDOR_CFFI=0
   ignore_run_exports:
     - python
 
