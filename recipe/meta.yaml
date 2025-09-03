@@ -10,7 +10,7 @@ source:
   sha256: 7ca7d1f81bce70cb10aad609d44dae560341d389a5c96bf0f25cd6000fb9d8d1
 
 build:
-  number: 0
+  number: 1
   skip: true  # [win and py == 39 and python_impl == 'pypy']
   script: {{ PYTHON }} -m pip install . --use-pep517 -vvv
   script_env:
