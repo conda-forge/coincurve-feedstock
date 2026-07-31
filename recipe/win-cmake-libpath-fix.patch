@@ -1,15 +1,39 @@
 --- a/cm_python_module/CMakeLists.txt
 +++ b/cm_python_module/CMakeLists.txt
-@@ -30,8 +30,10 @@
+@@ -22,20 +22,34 @@
+     # Link the vendored library to the output library
+     # https://docs.python.org/3/c-api/stable.html#limited-c-api
+     target_link_libraries(${CFFI_OUTPUT_LIBRARY} PRIVATE ${CFFI_INPUT_LIBRARY})
+ elseif(VENDORED_AS_SYSTEM_LIB_FOUND)
+     message(STATUS "Vendored system library found: ${VENDORED_AS_SYSTEM_LIB_LIBRARIES}")
++    if (CMAKE_SYSTEM_NAME STREQUAL "Windows")
++        # pkg-config's --msvc-syntax output embeds the conda install paths from libsecp256k1.pc
++        # (CMAKE_INSTALL_LIBDIR/INCLUDEDIR = "Library\lib" / "Library\include" with a literal
++        # backslash), and pkg-config's own Libs:/Cflags: field parser treats backslash as an
++        # escape character, silently consuming it: "Library\lib" -> "Librarylib". This corrupts
++        # both VENDORED_AS_SYSTEM_LIB_LIBRARY_DIRS and _INCLUDE_DIRS before any code in this file
++        # runs. Reconstruct the known conda-forge Windows layout directly instead of trusting the
++        # pkg-config output for directories (VENDORED_AS_SYSTEM_LIB_LIBRARIES, the bare .lib
++        # filename list, is unaffected and stays as pkg-config provided it).
++        set(VENDORED_AS_SYSTEM_LIB_INCLUDE_DIRS "$ENV{CONDA_PREFIX}/Library/include")
++        set(VENDORED_AS_SYSTEM_LIB_LIBRARY_DIRS "$ENV{CONDA_PREFIX}/Library/lib")
++    endif()
+     target_include_directories(${CFFI_OUTPUT_LIBRARY} PRIVATE ${VENDORED_AS_SYSTEM_LIB_INCLUDE_DIRS})
+     add_dependencies(${CFFI_OUTPUT_LIBRARY} cffi-c-binding)
+     # On windows, using the LDFLAGS field creates /libpath... secp256k1.lib (correct), but at a later stage
      # /libpath is converted to \libpath and fails to be interpreted as a flag by the linker
      # This may be an issue with libsecp256k1.pc, i.e. wrong slash used that triggers the slash conversion
      target_link_libraries(${CFFI_OUTPUT_LIBRARY} PRIVATE ${VENDORED_AS_SYSTEM_LIB_LIBRARIES})
 -    string(REPLACE "/libpath:" "" VENDORED_AS_SYSTEM_LIB_LIBRARY_DIRS ${VENDORED_AS_SYSTEM_LIB_LIBRARY_DIRS})
 -    string(REPLACE "/LIBPATH:" "" VENDORED_AS_SYSTEM_LIB_LIBRARY_DIRS ${VENDORED_AS_SYSTEM_LIB_LIBRARY_DIRS})
-+    string(REPLACE "/libpath:" "/" VENDORED_AS_SYSTEM_LIB_LIBRARY_DIRS ${VENDORED_AS_SYSTEM_LIB_LIBRARY_DIRS})
-+    string(REPLACE "/LIBPATH:" "/" VENDORED_AS_SYSTEM_LIB_LIBRARY_DIRS ${VENDORED_AS_SYSTEM_LIB_LIBRARY_DIRS})
-+    string(REPLACE "\\libpath:" "/" VENDORED_AS_SYSTEM_LIB_LIBRARY_DIRS ${VENDORED_AS_SYSTEM_LIB_LIBRARY_DIRS})
-+    string(REPLACE "\\LIBPATH:" "/" VENDORED_AS_SYSTEM_LIB_LIBRARY_DIRS ${VENDORED_AS_SYSTEM_LIB_LIBRARY_DIRS})
++    if (NOT CMAKE_SYSTEM_NAME STREQUAL "Windows")
++        string(REPLACE "/libpath:" "" VENDORED_AS_SYSTEM_LIB_LIBRARY_DIRS ${VENDORED_AS_SYSTEM_LIB_LIBRARY_DIRS})
++        string(REPLACE "/LIBPATH:" "" VENDORED_AS_SYSTEM_LIB_LIBRARY_DIRS ${VENDORED_AS_SYSTEM_LIB_LIBRARY_DIRS})
++    endif()
      target_link_directories(${CFFI_OUTPUT_LIBRARY} PRIVATE ${VENDORED_AS_SYSTEM_LIB_LIBRARY_DIRS})
  else()
      message(FATAL_ERROR "Vendored library not found.")
+ endif()
+
+
+ # Add platform-specific definitions
