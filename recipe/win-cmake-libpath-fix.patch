@@ -15,8 +15,8 @@
 +        # runs. Reconstruct the known conda-forge Windows layout directly instead of trusting the
 +        # pkg-config output for directories (VENDORED_AS_SYSTEM_LIB_LIBRARIES, the bare .lib
 +        # filename list, is unaffected and stays as pkg-config provided it).
-+        set(VENDORED_AS_SYSTEM_LIB_INCLUDE_DIRS "$ENV{CONDA_PREFIX}/Library/include")
-+        set(VENDORED_AS_SYSTEM_LIB_LIBRARY_DIRS "$ENV{CONDA_PREFIX}/Library/lib")
++        set(VENDORED_AS_SYSTEM_LIB_INCLUDE_DIRS "$ENV{PREFIX}/Library/include")
++        set(VENDORED_AS_SYSTEM_LIB_LIBRARY_DIRS "$ENV{PREFIX}/Library/lib")
 +    endif()
      target_include_directories(${CFFI_OUTPUT_LIBRARY} PRIVATE ${VENDORED_AS_SYSTEM_LIB_INCLUDE_DIRS})
      add_dependencies(${CFFI_OUTPUT_LIBRARY} cffi-c-binding)
