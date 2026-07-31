@@ -10,6 +10,7 @@ source:
   sha256: 7ca7d1f81bce70cb10aad609d44dae560341d389a5c96bf0f25cd6000fb9d8d1
   patches:
     - cffi_license_file.patch
+    - win-cmake-libpath-fix.patch
 
 build:
   number: 2
