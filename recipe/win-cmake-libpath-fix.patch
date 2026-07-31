@@ -1,0 +1,21 @@
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -38,6 +38,18 @@
+ include(SetSystemLibIfExists)
+ SetSystemLibIfExists()
+
++if (CMAKE_SYSTEM_NAME STREQUAL "Windows" AND VENDORED_AS_SYSTEM_LIB_FOUND)
++    # pkg-config's --msvc-syntax output embeds the conda install paths from libsecp256k1.pc
++    # using a literal backslash ("Library\lib" / "Library\include"), and pkg-config's own
++    # Libs:/Cflags: field parser treats backslash as an escape character, silently consuming
++    # it ("Library\lib" -> "Librarylib"). This corrupts VENDORED_AS_SYSTEM_LIB_LIBRARY_DIRS and
++    # _INCLUDE_DIRS before ANY subdirectory below (including cm_library_cffi_headers, which
++    # globs _INCLUDE_DIRS to harvest CFFI constant declarations) gets to use them. Reconstruct
++    # the known conda-forge Windows layout directly, here, before any add_subdirectory() runs.
++    set(VENDORED_AS_SYSTEM_LIB_INCLUDE_DIRS "$ENV{PREFIX}/Library/include")
++    set(VENDORED_AS_SYSTEM_LIB_LIBRARY_DIRS "$ENV{PREFIX}/Library/lib")
++endif()
++
+ add_subdirectory(cm_vendored_library)
+ add_subdirectory(cm_library_cffi_headers)
+ add_subdirectory(cm_library_c_binding)
