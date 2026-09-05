@@ -13,7 +13,7 @@ source:
     - win-cmake-libpath-fix.patch
 
 build:
-  number: 2
+  number: 3
   skip: true  # [win and py == 39 and python_impl == 'pypy']
   script: {{ PYTHON }} -m pip install . --use-pep517 -vvv
   script_env:
@@ -58,7 +58,7 @@ test:
   requires:
     - pip
     - pytest
-    - pytest-benchmark
+    - pytest-benchmark <5.3
   commands:
     - pip check
     - pytest -v tests
